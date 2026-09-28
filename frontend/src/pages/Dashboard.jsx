@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Sidebar from "../components/Sidebar"
+import API_URL from "../api"
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -19,14 +20,14 @@ function Dashboard() {
 
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/jobs",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+  `${API_URL}/jobs`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+)
 
         const data = await response.json()
 

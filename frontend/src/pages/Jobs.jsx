@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Sidebar from "../components/Sidebar"
+import API_URL from "../api"
 
 function Jobs() {
   const navigate = useNavigate()
@@ -29,14 +30,14 @@ function Jobs() {
       setLoading(true)
 
       const response = await fetch(
-        "http://127.0.0.1:8000/jobs",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+  `${API_URL}/jobs`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+)
 
       const data = await response.json()
 
@@ -72,14 +73,14 @@ function Jobs() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/jobs/${jobId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+  `${API_URL}/jobs/${jobId}`,
+  {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+)
 
       const data = await response.json()
 
@@ -136,14 +137,14 @@ function Jobs() {
       })
 
       const response = await fetch(
-        `http://127.0.0.1:8000/jobs/${editingJob.id}?${params.toString()}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+  `${API_URL}/jobs/${editingJob.id}?${params.toString()}`,
+  {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+)
 
       const data = await response.json()
 

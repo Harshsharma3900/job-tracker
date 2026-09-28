@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Sidebar from "../components/Sidebar"
+import API_URL from "../api"
+
 
 function ProfilePage() {
   const navigate = useNavigate()
@@ -19,14 +21,14 @@ function ProfilePage() {
 
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/me",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+  `${API_URL}/me`,
+  {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+)
 
         const data = await response.json()
 

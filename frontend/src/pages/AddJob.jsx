@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Sidebar from "../components/Sidebar"
+import API_URL from "../api"
 
 function AddJob() {
   const navigate = useNavigate()
@@ -46,14 +47,14 @@ function AddJob() {
       })
 
       const response = await fetch(
-        `http://127.0.0.1:8000/jobs?${params.toString()}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+  `${API_URL}/jobs?${params.toString()}`,
+  {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+)
 
       const data = await response.json()
 

@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Header
+from fastapi import FastAPI, Header, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from models import create_tables
 from database import get_db
@@ -10,6 +11,16 @@ from auth import (
 )
 
 app = FastAPI()
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    print(f"Server Error: {exc}")
+
+    return JSONResponse(
+        status_code=500,
+        content={
+            "message": "Something went wrong on the server"
+        }
+    )
 
 app.add_middleware(
     CORSMiddleware,
